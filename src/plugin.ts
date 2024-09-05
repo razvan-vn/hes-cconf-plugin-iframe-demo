@@ -6,7 +6,7 @@ export const initialize = (api: HesCConfApi) => {
   api.regionManager.registerMainView({
     id: api.pluginInfo.pluginId,
     factory: () =>  Promise.resolve(new MyIframeElement()) ,
-  }, "iframe plugin");
+  });
   
   return Promise.resolve();
 };
