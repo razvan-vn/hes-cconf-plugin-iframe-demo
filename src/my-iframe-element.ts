@@ -1,12 +1,16 @@
 export class MyIframeElement extends HTMLElement {
-  constructor() {
+  constructor(url: string) {
     super();
+    this.url = url;
     this.attachShadow({ mode: 'open' });
   }
 
   connectedCallback() {
     this.render();
   }
+
+  url: string | undefined;
+  
 
   render() {
     this.shadowRoot!.innerHTML = `
@@ -24,17 +28,7 @@ export class MyIframeElement extends HTMLElement {
           width: 100%;
         }
       </style>
-      <iframe src="https://www.sport.es/es/"></iframe>
+      <iframe src="${this.url}"></iframe>
     `;
-  }
-}
-
-// Define el custom element
-customElements.define('my-iframe-element', MyIframeElement);
-
-// Declaración global (opcional, pero útil para TypeScript)
-declare global {
-  interface HTMLElementTagNameMap {
-    'my-iframe-element': MyIframeElement;
   }
 }
